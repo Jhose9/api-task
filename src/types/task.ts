@@ -5,3 +5,8 @@ export interface task{
     categoria:number
     fecha?:string
 }
+
+export interface category{
+    name:string,
+    descripcion:string
+}

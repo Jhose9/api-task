@@ -19,3 +19,13 @@ export async function getAll(req:Request,res:Response) {
     const task=await prisma.task.findMany();
     res.send(task)
 }
+
+export async function Get(req:Request,res:Response) {
+    const ID=req.params.id;
+    const getTask=await prisma.task.findUnique({
+        where:{
+            id:parseInt(ID),
+        },
+    })
+    res.json(getTask)
+}
