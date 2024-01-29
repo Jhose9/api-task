@@ -3,7 +3,6 @@ export interface task{
     name:string
     descripcion:string
     categoria:number
-    fecha?:string
 }
 
 export interface category{
