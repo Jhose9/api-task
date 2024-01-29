@@ -43,3 +43,36 @@ export async function Get(req: Request, res: Response) {
     console.log(error);
   }
 }
+
+export async function updateTask(req:Request,res:Response) {
+  try {
+    const newTask=req.body;
+  const Task= await prisma.task.update({
+    where:{
+      id:parseInt(req.params.id)
+    },
+    data:{
+      name:newTask.name,
+      descripcion:newTask.descripcion,
+      categoria:newTask.categoria,
+
+    }
+  })
+  res.send(Task);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function deleteTask(req:Request,res:Response) {
+try {
+  const task= await prisma.task.delete({
+    where:{
+      id:parseInt(req.params.id)
+    }
+  })
+  res.send(task)
+} catch (error) {
+  console.log(error)
+}
+}
