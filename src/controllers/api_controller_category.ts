@@ -35,3 +35,41 @@ export async function getAll(req: Request, res: Response) {
     console.log(error);
   }
 }
+
+export async function deleteCategory(req: Request, res: Response) {
+  try {
+    if (req.params.password === process.env.PASSWORD_CATEGORY) {
+      const category = await prisma.category.delete({
+        where: {
+          id: parseInt(req.params.id),
+        },
+      });
+      res.send(category);
+    } else {
+      res.send("Contraseña Incorrecta");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateCategory(req: Request, res: Response) {
+  try {
+    if (req.params.password === process.env.PASSWORD_CATEGORY) {
+      const category = await prisma.category.update({
+        where: {
+          id: parseInt(req.params.id),
+        },
+        data: {
+          name: req.body.name,
+          descripcion: req.body.descripcion,
+        },
+      });
+      res.send(category);
+    } else {
+      res.send("Contraseña Incorrecta");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
